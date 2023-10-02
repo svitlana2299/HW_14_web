@@ -1,0 +1,18 @@
+fastapi==0.70.0
+uvicorn==0.15.0
+sqlalchemy==1.4.23
+psycopg2-binary
+python-jose==3.3.0
+passlib
+bcrypt==3.2.0
+
+# Залежності для розробки та тестування
+pytest==6.2.5
+pytest-cov==3.0.0
+
+# Залежності для керування міграціями бази даних з Alembic
+alembic==1.7.4
+
+
+# Залежності для кешування з Redis (якщо потрібно)
+# redis==3.6.15

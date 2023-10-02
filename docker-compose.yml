@@ -1,0 +1,37 @@
+version: '3'
+services:
+  # Сервіс для веб-додатку FastAPI
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://svitlana:2299@db/contact_manager_db
+      - SECRET_KEY=mysecretkey
+      - ALGORITHM=HS256
+      - ALLOWED_ORIGINS=http://localhost,http://example.com
+      # Додайте інші змінні середовища за потребою
+    networks:
+      - app-network
+
+  # Сервіс для бази даних PostgreSQL
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: contact_manager_db
+      POSTGRES_USER: svitlana
+      POSTGRES_PASSWORD: 2299
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+
+  # Інші сервіси, які можуть бути потрібні, наприклад, Redis для кешування
+
+networks:
+  app-network:
+    driver: bridge
